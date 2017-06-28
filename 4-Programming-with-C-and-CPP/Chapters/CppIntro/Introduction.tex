@@ -2,7 +2,7 @@
 
 In previous chapters, we learn various features of C programming language. Now, we will discuss the C++ programming language, which can be considered as the superset of C. In the other words, all the codes in the previous chapters can be compiled directly using C++ compiler (i.e. using \textbf{g++}, instead of \textbf{gcc}), but vice-versa is not possible, as we saw in Listing \ref{c:ElseIfEx}, where `or' keyword was used, and the code was compiled using `g++'. 
 
-The major difference between these two languages is that the C language is `procedural programming language' whereas the C++ language is the \textbf{combination} of `procedural programming' and `object oriented programming (OOP)'. In this chapter, we will re-implement the previous codes using standard `C++ headers' (instead of using `C headers' in C++); and then OOP features of C++ will be discussed from next chapter.  Lastly, the C codes are saved with extension `.c', whereas C++ codes are saved with extension `.cpp' or `.cc'. We will use `.cpp' extension in this tutorial. 
+The major difference between these two languages is that the C language is `procedural programming language' whereas the C++ language is the \textbf{combination} of `procedural programming' and `object oriented programming (OOP)'. In this chapter, we will re-implement the previous codes using standard `C++ headers' (instead of using `C headers' in C++), which show the differences in `procedural programming' using these two languages. Then OOP features of C++ will be discussed from next chapter.  Lastly, the C codes are saved with extension `.c', whereas C++ codes are saved with extension `.cpp' or `.cc'. We will use `.cpp' extension in this tutorial. 
 
 \section{Writing first code}
 Listing \ref{cpp:helloWorld} shows the source code to print the `Hello World' on the screen. To execute the code in the listing, open the terminal and go to the folder where program is saved and type following commands; which will generate the output on the terminal. 
@@ -126,5 +126,23 @@ label      = {cpp:stringType}
 ]{stringType.cpp}
 
 
+\section{Scope resolution operator `::'}
+Scope resolution operation can be used when the namespace-scope or global-variable-scope is hidden in a function due to same name, as shown in Listing \ref{cpp:scopeResolutionEx}. Here, local variable `a' is defined at Line 10, which hides the access to global variable (due to same name). Now, `::' should be used to access the global variable as shown in Line 15.  
+
+\lstinputlisting[
+language = C++,
+caption    = {Scope resolution operator},
+label      = {cpp:scopeResolutionEx}
+]{scopeResolutionEx.cpp}
+
+\section{Function overloading}
+C++ allows the function overloading, which is not allowed in C. In function overloading, two functions can have same; and the correct function is called based on the \textbf{types of the input-parameters}, as shown in Listing \ref{cpp:functionOverload}. In the listing, the function `add2Num' is used 4 times with different input-parameters. Since Line 43 contains inputs of type `integer' therefore function at Line 11 will be invoked. In the same way other functions will be invoked based on input types as shown in the listing. 
+ 
+\lstinputlisting[
+language = C++,
+caption    = {Function overloading},
+label      = {cpp:functionOverload}
+]{functionOverload.cpp}
+
 \section{Conclusion}
-In this chapter, we wrote simple `Hello World' programs, which illustrate the concept of `main function', `name space' and `printing output on screen'. Further, we converted some of the previous C codes into C++ codes. Lastly, various input and output formats are discussed. 
+In this chapter, we wrote simple `Hello World' programs, which illustrate the concept of `main function', `name space' and `printing output on screen'. Further, we converted some of the previous C codes into C++ codes. Also, various input and output formats are discussed. Lastly, strings, function overloading and scope resolution operators are also discussed. 
