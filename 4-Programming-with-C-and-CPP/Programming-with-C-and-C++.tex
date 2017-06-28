@@ -1,0 +1,92 @@
+\documentclass[11pt,a4paper, oneside]{book}
+%%%\documentclass[12pt,a4paper,oneside]{report}
+
+
+%%%add number to subsubsection 2=subsection, 3=subsubsection
+%%% below subsubsection is not good idea.
+\setcounter{secnumdepth}{3}
+%
+%%%% Table of content upto 2=subsection, 3=subsubsection
+\setcounter{tocdepth}{2}
+
+%%%%%================= Preamble============================
+
+\input{Classes/preamble}
+\input{Classes/mypreamble} %Define your preamble here
+
+\begin{document}
+	
+%%%%========================Title Page====================
+\input{title-page/title-page}
+
+%%%%========================Front matter====================
+
+\pagenumbering{roman}
+
+%%% Theis style 
+% \include{FrontMatters/acknowledgement}
+% \include{FrontMatters/abstract}
+% \include{FrontMatters/declaration}
+% \include{FrontMatters/dedication}
+% \include{FrontMatters/Publications}
+% \include{FrontMatters/NonemClatureList}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% begin group%%%%%%%%%%%%%%%%%%%%
+\begingroup %%% no page will be change upto \endgroup
+\let\clearpage\relax
+
+% Table of content, figures, algorithms and tables
+\tableofcontents
+% \listoffigures
+% \listoftables
+% \listofalgorithms
+% \lstlistoflistings
+%
+%%% add both ()theorem,theoremColor).. do not place space between {theorem,theoremColor}
+% \listoftheorems[ignoreall,show={theorem,theoremColor}] 
+%%% add list of definition definition (defined in mypreambles)
+% \listofdefinitions
+
+\endgroup
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% end group%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% \addcontentsline{toc}{chapter}{Nomenclature}
+%% uncomment below print nomenclature
+% \printnomenclature
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%======================Main matter===========================
+\clearpage
+\pagenumbering{arabic}
+\include{Chapters/ProgrammingBasic/ProgrammingBasic}
+\include{Chapters/DataTypes/DataTypes}
+\include{Chapters/OperatorsControl/OperatorsControl}
+\include{Chapters/Functions/Functions}
+\include{Chapters/ArrayPointer/ArrayPointer}
+\include{Chapters/Structure/Structure}
+\include{Chapters/FileIO/FileIO}
+\include{Chapters/MultiFile/MultiFile}
+\include{Chapters/FormatIO/FormatIO}
+\include{Chapters/BasicEx/BasicEx}
+\include{Chapters/CppIntro/CppIntro}
+%%======================Back matter================================
+
+%%%%%%%%%%%%%%%% Bibliography %%%%%%%%%%%%%%
+% \include{BackMatters/References/References}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%% Appendix %%%%%%%%%%%%%%%%%%%%%%%%
+% \include{BackMatters/Appendix/Appendix}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%% uncomment below for index %%%%%%%
+% \printindex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
+\end{document}

@@ -1,0 +1,99 @@
+\section{Introduction}
+Arrays are collection of data of similar type, whereas the Structures are the collections of variables, possibly of different data type. It is quite useful as data usually contains different types of elements. For example, radio can be specified using `company name (string)', price (`float') and id (`int'); in such cases, structure can be used. In this chapter, we will see various examples of structures.  
+
+
+\section{Structure}
+Structure is defined using keyword `struct'. Elements of structure are called `members'. In Listing \ref{c:structEx}, a structure with name `item' is defined (lines 7-12) with three members i.e. `id', `company' and `cost' (Line 9-11). Then, two variables of this structure are defined at Lines 14-15 i.e. `radio' and `oven'. Further, variable `oven' is initialized as well; note that these values are assigned to members based on position e.g. `101', `Sony' and `99.99' at Line 14, will be assigned to `id', `company' and `cost' respectively. Lastly, the member functions of these variables can be accessed using `.' operator; for example Lines 18-20 print the values of `radio'; whereas at Lines 22-23, the values are assigned to different members of variable `oven'. 
+
+
+\lstinputlisting[
+language = C,
+caption    = {Structure example},
+label      = {c:structEx}
+]{structEx.c}
+
+
+Also, we can define structure-variables along with the structure-definitions as shown in Listing \ref{c:structEx2}. Here, structure variables (radio and oven) are defined at Line 12, i.e. with the structure definition `item'. Rest of the working of this listing is same as Listing \ref{c:structEx}.
+
+\lstinputlisting[
+language = C,
+caption    = {Structure variable with definition},
+label      = {c:structEx2}
+]{structEx2.c}
+
+\section{Defining structure outside the main function}
+It is better to define structure outside the main function for the purpose of clarity of the code, as shown in Listing \ref{c:structMemoryEx}. Note that, no memory is assigned to structure definition (i.e. Lines 6-11); memories are assigned to structure variables only (i.e. Line 15). Note that, structure is define outside the main function, but it \textbf{does not mean} that the structure-variables are global variable; these variables are still automatic variable and available within their scope. 
+
+\lstinputlisting[
+language = C,
+caption    = {Structure variable outside the main function},
+label      = {c:structMemoryEx}
+]{structMemoryEx.c}
+
+\section{Arrays of structure}
+Listing \ref{c:structArrayEx} creates the `array of structure' at Line 13, where array of size 3 is created. Further, each member of these arrays can be accessed by `.' operator along with index e.g. a[0], as shown in Lines 15-16. 
+\lstinputlisting[
+language = C,
+caption    = {Array of structure},
+label      = {c:structArrayEx}
+]{structArrayEx.c}
+
+\section{Pointer-variable of structure}
+Pointer variable can be created for a structure, and to access this variable `-$>$' operator is used instead of `.' operator, as shown in Line 21, 26 and 28 of Listing \ref{c:structPointerEx}. Here, Line 21 and 28 print the values which are stored at the address of pointer-variable i.e. `radioPointer', whereas Line 26 is used to modify the content using pointer variable. 
+\lstinputlisting[
+language = C,
+caption    = {Pointer-variable of structure},
+label      = {c:structPointerEx}
+]{structPointerEx.c}
+
+\section{Passing structure to function}
+Structure can be passed by values or by reference. When structure is passed by value, then only one value can be returned (or modified); whereas the pass by reference method can modify the complete structure using one function, as shown in Listing \ref{c:structFuncEx}. Working of the listing is same as normal functions, the only difference is in the function-prototypes and definition , where `struct item' are used i.e. to create the prototype (Line 15 and 16) and function-definition (Lines 32 and 37), we need to use keyword `struct' and the name of the structure i.e. `item'. 
+\begin{noNumBox}
+	Note that, if we define the structure inside the main function, then it can not be passed to the functions; i.e. Lines 7-12 of Listing \ref{c:structFuncEx} can not be defined inside the main function, as it will generate error. 
+\end{noNumBox}
+\lstinputlisting[
+language = C,
+caption    = {Passing structure to function},
+label      = {c:structFuncEx}
+]{structFuncEx.c}
+
+
+\section{typedef}
+The keyword `typedef' is used to create the `synonym (or alias)' of a data type. For example in Listing \ref{c:structFuncEx}, `struct item' is used at Lines 15 and 16; this name can be shorten to `Item (or some other name)' using `typedef command as shown in Listing \ref{c:typedefEx}. Here, alias is created for structure at Line 13; and then in the function-prototype (Line 15), `Item' is used, instead of `struct item'. 
+
+\begin{noNumBox}
+\textbf{To avoid errors, define `constants' at the top, next structures, then typedef, next function-prototypes and finally write the function definitions.}
+\end{noNumBox}
+ 
+
+\lstinputlisting[
+language = C,
+caption    = {typedef example},
+label      = {c:typedefEx}
+]{typedefEx.c}
+
+\section{Define structure using typedef}
+The structure can be defined using `typedef' as well. In this way, we need not to create the structure variable using `struct' keyword. The keyword `typedef' can be used in two different ways for creating the alias for the structures, as shown in this section. In Section \ref{sec:aliasSameName}, the `struct item' is renamed as `item', i.e. names are same; whereas in Section \ref{sec:aliasDiffName}, `struct item' is renamed as `Item' (Uppercase `I') i.e. names are different. 
+
+\subsection{Rename `struct item' to `item'}  \label{sec:aliasSameName}
+	In Listing \ref{c:typedefEx}, the variable `oven' of structure `item' is created using `\textbf{struct item oven}' statement at Line 19; but with the help of `typedef' we can create it using `\textbf{item oven}' statement. Further, we can omit the `typedef' at Line 13 of Listing \ref{c:typedefEx}, as shown in Listing \ref{c:typedefEx2}, where Line 13 is commented. Here, `typedef' is used to define structure at Line 7; \textbf{note that, the name of the structure is now at the end of the structure definition i.e. at Line 12 (instead of after the keyword `struct' at Line 7)}. 
+	
+\lstinputlisting[
+language = C,
+caption    = {Rename `struct item' to `item'},
+label      = {c:typedefEx2}
+]{typedefEx2.c}
+
+\subsection{Rename `struct item' to `Item'}\label{sec:aliasDiffName}
+For providing the different name to structure, we have to provide the name of the structure with `typedef' i.e. `typedef struct item' is added at Line 7 of Listing \ref{c:typedefEx3}; and alternative name i.e. `Item' should be added before the semicolon (Line 12). Now we can use `Item' instead of `struct item' as shown in Lines 15, 18 and 27. 
+
+\lstinputlisting[
+language = C,
+caption    = {Rename `struct item' to `Item'},
+label      = {c:typedefEx3}
+]{typedefEx3.c}
+
+\section{Conclusion}
+In this chapter, structure and `array of structure' are created. Then, we learn to pass the structure to the function using `pass by value' and `pass by reference' methods. Finally, we used `typedef' to provide the alternate name to the structure. 
+
+%Note that various topics, such as `pointer as structure member', `structure as structure member' and `passing structure to function' etc. are not discussed here, as we will not need these in the embedded design.

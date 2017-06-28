@@ -1,0 +1,160 @@
+\section{Matrices}
+
+In this section, various matrix operations are implemented using C. 
+\subsection{Size of the matrix}
+Listing \ref{c:elements_of_array} checks the total number of elements in the array. Also, it shows the method to find the number of rows and columns in multidimensional arrays. \textbf{Note that arrays are bound for all dimensions except first, therefore it is compulsory to define the second dimension as shown in Line 8 of the listing}.
+ 
+\lstinputlisting[
+language = C,
+caption    = {Size of the matrix},
+label      = {c:elements_of_array}
+]{matrices/elements_of_array.c}
+
+\subsection{Dot product}
+
+Listing \ref{c:dot_product} calculates the dot product of two vectors i.e. $x^T y$, where $x,y \in {R^n}$ and ${R^n}$ is the short notation for ${R^{n \times 1}}$ . Dot production can be implemented using Algorithm \ref{algo:dot_product}. Following are the important points to notice in Listing \ref{c:dot_product}, 
+
+\begin{enumerate}
+	\item For dot product, the size of the vectors should be same. 
+	\item In Line 21, \textbf{`const int N'} is used (instead of `int N'), because the variable `N' is used for defining the size of array at Lines 22-23, which can not be of variable type. 
+	\item Since, `N' is constant, therefore it can not be `passed by reference' during function call; i.e. at Line 27, `N' is `passed by value', whereas variable `result' is `passed by reference'. 
+\end{enumerate}
+
+\begin{algorithm}
+	\caption{Dot Product : $x,y \in {R^n}$}
+	\label{algo:dot_product}
+	\begin{algorithmic}[1]
+		\For {i = 1:n} 
+			\State result = result + x(i)y(i)
+		\EndFor
+	\end{algorithmic}
+\end{algorithm}
+
+\lstinputlisting[
+language = C,
+caption    = {Dot product},
+label      = {c:dot_product}
+]{matrices/dot_product.c}
+
+\subsection{Matrix vector multiplication}
+If matrix $A \in {R^{m \times n}}$ and vector $x \in {R^n}$, then Matrix-vector multiplication is given by , 
+\begin{equation}
+	{y_i} = \sum\limits_{j = 1}^n {{A_{ij}}{x_j} + {y_i}} ,\;i = 1, \cdots ,m
+	\label{eq:matrix_vector_mul}
+\end{equation}
+
+\begin{algorithm}
+	\caption{Matrix-Vector Product : $A \in {R^{m \times n}}$ and $x \in {R^n}$}
+	\label{algo:Matrix_Vector_product}
+	\begin{algorithmic}[1]
+		\For {i = 1:m} 
+			\For {j = 1:n} 
+				\State result(i) = result(i) + A(i,j)x(j)
+			\EndFor
+		\EndFor
+	\end{algorithmic}
+\end{algorithm}
+
+Algorithm \ref{algo:Matrix_Vector_product} can be used to implement the equation \ref{eq:matrix_vector_mul}, as shown in Listing \ref{c:matrix_vector_mul}. \textbf{Note that, in the listing, the sizes (Lines 8-9) are defined as global variable}, as we need to pass them in the function prototype and definitions as well; as the arrays are bound for all dimension except first. 
+
+\begin{noNumBox}
+\textbf{Further, we need not to pass the global variable in the function, as shown in Listing \ref{c:matrix_vector_mul_correct} whose functionality is same as Listing \ref{c:matrix_vector_mul}; but in Listing \ref{c:matrix_vector_mul}, global variable is passed to function, just to show the limitations of `variables' in defining the `array size'.}
+\end{noNumBox}
+
+\lstinputlisting[
+language = C,
+caption    = {Matrix vector multiplication},
+label      = {c:matrix_vector_mul}
+]{matrices/matrix_vector_mul.c}
+
+\lstinputlisting[
+language = C,
+caption    = {Matrix vector multiplication (global variables are not passed in function)},
+label      = {c:matrix_vector_mul_correct}
+]{matrices/matrix_vector_mul_correct.c}
+
+\subsection{Outer product}
+ Algorithm \ref{algo:outer_product} implements the outer product of two vectors i.e. $x y^T$, where $x \in {R^m}$ and $y \in {R^n}$ and the result $A \in {R^{m \times n}}$; which is implemented in Listing \ref{c:outer_product}.
+
+\begin{algorithm}
+	\caption{Outer Product : $x \in {R^m}$ and $y \in {R^n}$}
+	\label{algo:outer_product}
+	\begin{algorithmic}[1]
+		\For {i = 1:m}
+			\For {j=1:n} 
+				\State result(i,j) = result(i,j) + x(i)y(j)
+			\EndFor
+		\EndFor
+	\end{algorithmic}
+\end{algorithm}
+
+\lstinputlisting[
+language = C,
+caption    = {Outer Product : $x \in {R^m}$ and $y \in {R^n}$},
+label      = {c:outer_product}
+]{matrices/outer_product.c}
+
+\subsection{Matrix-Matrix multiplication}
+Two matrices $A \in {R^{m \times p}}$ and $B \in {R^{p \times n}}$, can be multiplied using Algorithm \ref{algo:matrix_matrix_mul}, as shown in Listing \ref{c:matrix_matrix_mul}. 
+
+\begin{algorithm}
+	\caption{Matrix-Matrix multiplication : $A \in {R^{m \times p}}$ and $y \in {R^{p \times n}}$}
+	\label{algo:matrix_matrix_mul}
+	\begin{algorithmic}[1]
+		\For {i = 1:m}
+			\For {j=1:n}
+				 \For {k=1:p} 
+					\State result(i,j) = result(i,j) + A(i,k)B(k,j)
+				\EndFor
+			\EndFor
+		\EndFor
+	\end{algorithmic}
+\end{algorithm}
+
+\lstinputlisting[
+language = C,
+caption    = {Matrix-Matrix multiplication : $A \in {R^{m \times p}}$ and $y \in {R^{p \times n}}$},
+label      = {c:matrix_matrix_mul}
+]{matrices/matrix_matrix_mul.c}
+
+\subsection{Upper Triangular Matrices multiplication}
+Two upper triangular matrices $A, B \in {R^{n \times n}}$ can be multiplied using Algorithm \ref{algo:triangular_matrix_mul}, as shown in Listing \ref{c:triangular_matrix_mul}.
+\begin{algorithm}
+	\caption{Matrix-Matrix multiplication : $A \in {R^{m \times p}}$ and $y \in {R^{p \times n}}$}
+	\label{algo:triangular_matrix_mul}
+	\begin{algorithmic}[1]
+		\For {i = 1:n}
+			\For {j=i:n}
+				\For {k=i:j} 
+					\State result(i,j) = result(i,j) + A(i,k)B(k,j)
+				\EndFor
+			\EndFor
+		\EndFor
+	\end{algorithmic}
+\end{algorithm}
+
+\lstinputlisting[
+language = C,
+caption    = {Triangular Matrix multiplication : $A \in {R^{n \times n}}$ and $y \in {R^{n \times n}}$},
+label      = {c:triangular_matrix_mul}
+]{matrices/triangular_matrix_mul.c}
+
+\subsection{Transpose of matrix}
+Transpose of matrix $A \in {R^{m \times n}}$ can be obtained by Algorithm \ref{algo:matrix_transpose}, as shown in Listing \ref{c:matrix_transpose}.
+\begin{algorithm}
+	\caption{Transpose of matrix $A \in {R^{m \times n}}$}
+	\label{algo:matrix_transpose}
+	\begin{algorithmic}[1]
+		\For {i = 1:m}
+			\For {j=i:n}
+				\State result(j,i) = A(i,j)
+			\EndFor
+		\EndFor
+	\end{algorithmic}
+\end{algorithm}
+
+\lstinputlisting[
+language = C,
+caption    = {Transpose of matrix $A \in {R^{m \times n}}$},
+label      = {c:matrix_transpose}
+]{matrices/matrix_transpose.c}

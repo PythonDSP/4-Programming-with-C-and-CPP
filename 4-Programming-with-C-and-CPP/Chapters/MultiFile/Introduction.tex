@@ -1,0 +1,61 @@
+\section{Introduction}
+In this chapter, we will learn to split the program in multiple files. In this way, the code-files are more manageable. 
+
+\section{Program to separate}
+
+Listing \ref{c:main-to-split} is the code, which we want to write in separate files. In this code, value of constant PI is printed at Line 18. Loops at Line 20 calculate the sum of all elements of array `global\_array'. Also, two functions are defined i.e. `add2Num' and `diff2Num' to calculate the sum and difference of two numbers. 
+
+\lstinputlisting[
+language = C,
+caption    = {Program to separate in multiple files},
+label      = {c:main-to-split}
+]{main-to-split.c}
+
+\section{Separating the main function }
+In this section, we will write the main function in one file (Listing \ref{c:main1-split}), constants in second file (Listing \ref{c:my_constants}) and rest of the code in the third file (Listing \ref{c:my_header}). \textbf{Note that, each file contains `stdio.h' at the top which is enclosed between $<...>$, whereas files e.g. `my\_header.h' is enclosed between $``... "$. When we use $ ``..." $, then compiler look for the file in the current project director, whereas $ <...>$ looks for the files in the standard library locations. } Since, we have splited the code in two different files, therefore we need to include these files in the main project as shown in Lines 5-6 of Listing \ref{c:main1-split}. 
+
+\lstinputlisting[
+language = C,
+caption    = {Program to separate in multiple files},
+label      = {c:main1-split}
+]{main1.c}
+
+\lstinputlisting[
+language = C,
+caption    = {Contants and global variable in `my\_constants.c' file},
+label      = {c:my_constants}
+]{my_constants.c}
+
+\lstinputlisting[
+language = C,
+caption    = {Functions prototype and definition},
+label      = {c:my_header}
+]{my_header.h}
+
+\section{Separating function-prototype and function-definition}
+In this section, we will further split the file `my\_header.h' in Listing \ref{c:my_header}, as shown in Listing \ref{c:my_func_def} and \ref{c:my_header2}. Following two points are important here, 
+\begin{enumerate}
+	\item If we uncomment the Line 4 of Listing \ref{c:my_header2}, then we can compile the Listing \ref{c:main2-split} by using command `g++ main2.c -o out' as the `my\_func\_def.c' file is included to main2.c via `my\_header2.h'; but this is not the case if we comment this Line. 
+	\item If Line 4 of Listing \ref{c:my_header2} is commented, then there is no way to compile it directly using command in above point. We need to separately compile it using `g++ main2.c my\_func\_def.c -o out'. Now, the code will compile successfully. 
+\end{enumerate}
+
+\lstinputlisting[
+language = C,
+caption    = {Functions prototypes},
+label      = {c:my_func_def}
+]{my_func_def.c}
+
+\lstinputlisting[
+language = C,
+caption    = {Functions definition},
+label      = {c:my_header2}
+]{my_header2.h}
+
+\lstinputlisting[
+language = C,
+caption    = {Functions definition},
+label      = {c:main2-split}
+]{main2.c}
+
+\section{Conclusion}
+In this chapter, we learn to separate the program into multiple files. Also, we saw that we need to compile multiple files, for the cases where function-definitions-file is not included to function-header-file (i.e. file that contains function prototypes). 

@@ -1,0 +1,139 @@
+\section{Introduction}
+In previous chapters, we saw various useful features of C language with some examples. In this chapter, more examples are added for better understanding of the language. Only new and/or important parts of the codes are discussed in this chapter. 
+
+\section{Basic Examples}
+In this section, some simple examples are shown to learn the language effectively.
+
+\subsection{Print number in reverse order}
+The `for loop' can be executed in reverse direction using `i$--$' operator as shown at Line 8 of Listing \ref{c:reverseOrder}. 
+\lstinputlisting[
+language = C,
+caption    = {Print number in reverse order},
+label      = {c:reverseOrder}
+]{basicExamples/reverseOrder.c}
+
+\subsection{Factorial}
+Listing \ref{c:factorialEx} calculates the factorial of numbers. In this listing, \textbf{`factorial *= i'} is the sort notation for \textbf{`factorial = factorial * i'}. Similarly, we can use `a += 3' for `a = a + 3' etc. 
+
+\lstinputlisting[
+language = C,
+caption    = {Factorial},
+label      = {c:factorialEx}
+]{basicExamples/factorialEx.c}
+
+\subsection{Fibonacci series}
+Listing \ref{c:Fibonacci} prints the Fibonacci series. In this listing, `infinite for loop' is used at Line 15, which is terminated at Line 24, when the next Fibonacci number is greater than the `limit'  provided by the user at Lines 10-11.  
+
+\lstinputlisting[
+language = C,
+caption    = {Fibonacci series},
+label      = {c:Fibonacci}
+]{basicExamples/Fibonacci.c}
+
+\subsection{Print values of characters e.g. EOF, Space and Enter etc.} \label{value_EOF_ENTER}
+`Spaces', `EOF (End of file)', `Commas' and `Enter (i.e. line-change) can be considered as the end of data e.g. in CSV file, the comma is the delimiter which distinguish one data from other. Therefore, we need to identity these values while working with data. Further, The symbolic constant `EOF (End of file)' is an integer and defined in `stdio.h'. The `\textbf{getchar}' command returns different values for different characters. 
+
+\begin{explanation}[Listing \ref{c:EOF_ex}]
+	In the listing, Line 8 prints the value `EOF' i.e. -1. Next , `getchar' command is used (Line 14) to read the values from terminal and then corresponding `integer' values are printed using `printf' command. Here, infinite-while-loop is used  to read the values from the terminal (Line 13) and `E (uppercase E)' is used to break the loop.  \textbf{Note that, `int c' is used (not `char c'), to store the larger values and `EOF', which is not possible with `char c'}. In the outputs, we can see the different values for different characters; some of those values are listed below, 
+\begin{itemize}
+	\item t = 116
+	\item space = 32
+	\item enter = 10
+	\item EOF (i.e. ctrl+z) = -1 
+\end{itemize}
+\end{explanation}
+
+\lstinputlisting[
+language = C,
+caption    = {Print values of characters e.g. EOF, Space and Enter etc.},
+label      = {c:EOF_ex}
+]{basicExamples/EOF_ex.c}
+
+\subsection{Read and write until EOF}
+In Section \ref{value_EOF_ENTER}, we saw that `EOF' is the constant, which is stored in the `stdio.h' header file; and infinite loop was terminated with the help of character `E' in `if loop'. Now, In Listing \ref{c:getPutEOF}, we will use the `EOF' to terminate the program. Also, `\textbf{putchar}' command is used (Line 13) to print the character, instead of `printf'. 
+
+\lstinputlisting[
+language = C,
+caption    = {read and write until EOF},
+label      = {c:getPutEOF}
+]{basicExamples/getPutEOF.c}
+
+\subsection{Counting characters}
+Listing \ref{c:countChar}, counts the total number of characters entered before EOF operation. Here, `getchar()' is used inside the `while loop' i.e. character will be read from the terminal until the compiler gets the `ctrl+Z' command; also, we do no not need `char c' for storing the character, as we did in Listing \ref{c:getPutEOF}. 
+
+\lstinputlisting[
+language = C,
+caption    = {Counting characters},
+label      = {c:countChar}
+]{basicExamples/countChar.c}
+
+\subsection{Counting spaces, words and lines}
+Listing \ref{c:countLine} counts the spaces, words and spaces. Note that, single quotes (not double) are used to define space i.e. $' \rm{ \ } \rm{ \ } '$. Also, word counts are based on space and enters, therefore `word\_count' is used in both the `if statements' i.e. Lines 13 and 18. 
+
+\lstinputlisting[
+language = C,
+caption    = {Counting characters},
+label      = {c:countLine}
+]{basicExamples/countLine.c}
+
+\subsection{Print longest line}
+Listing \ref{c:largest_line} prints the longest line entered by the user. Here, function `getLine' (Line 8), checks the length of the line; which is called by `main' function through Line 37'. Note that, the condition for `while loop' at Line 38 is `$> 0$'; since the `EOF' command returns `0' therefore, the loop will be terminated by `ctrl+z' command. Also, automatic-variable `k' (Line 46) is local to `if statement' at Line 39 (see comments for further details). Lastly, 	`MAX\_CHAR - 2' is used at Line 13, to store the `NULL character i.e. $\backslash 0$' at the end of the string. 
+\lstinputlisting[
+language = C,
+caption    = {Longest line},
+label      = {c:largest_line}
+]{basicExamples/largest_line.c}
+
+\subsection{Store and print values of array}
+In Listing \ref{c:storeArray}, the array size is received from terminal (Line 10), and then values are stored in the array (Lines 14-15). Finally, these values are printed by Lines 20-21. 
+\lstinputlisting[
+language = C,
+caption    = {Store and print value of array},
+label      = {c:storeArray}
+]{basicExamples/storeArray.c}
+
+\subsection{Minimum and maximum values of array}
+Lines 23-28 of Listing \ref{c:small_large_array} find the minimum and maximum values of the array.
+\lstinputlisting[
+language = C,
+caption    = {Minimum and maximum values of array},
+label      = {c:small_large_array}
+]{basicExamples/small_large_array.c}
+
+\subsection{Find duplicate elements in array}
+Listing \ref{c:find_duplicate} check the duplicates in the array, and prints the location of duplicate elements. 
+
+\lstinputlisting[
+language = C,
+caption    = {Find duplicate elements in array},
+label      = {c:find_duplicate}
+]{basicExamples/find_duplicate.c}
+
+\subsection{Function to sort the numbers in array}
+In Listing \ref{c:sortArray}, array is sorted by the function `sortArray' at Line 8. This sorting algorithm is known as `bubble sort'. 
+
+\lstinputlisting[
+language = C,
+caption    = {Sort the numbers in array},
+label      = {c:sortArray}
+]{basicExamples/sortArray.c}
+
+
+\section{Number conversion}
+In this section, the numbers are converted into different formats. 
+\subsection{Binary to decimal conversion}
+Listing \ref{c:Binary_to_Decimal} converts the binary number to decimal number. 
+\lstinputlisting[
+language = C,
+caption    = {Binary to decimal conversion},
+label      = {c:Binary_to_Decimal}
+]{numberConversion/Binary_to_Decimal.c}
+
+\subsection{Decimal to binary conversion}
+Listing \ref{c:Decimal_to_binary} converts the decimal number to binary number. 
+\lstinputlisting[
+language = C,
+caption    = {Decimal to binary conversion},
+label      = {c:Decimal_to_binary}
+]{numberConversion/Decimal_to_binary.c}
+

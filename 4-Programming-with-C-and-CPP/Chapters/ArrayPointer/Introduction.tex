@@ -1,0 +1,109 @@
+\section{Introduction}
+Array is collection of data of same type, and each element of the array can be accessed by index number. Also, array has contiguous memory location  for it's elements; where first element has the lowest address of memory, and the last number has the highest address of memory . Note that, array and pointers are closely related to each other; in the other words, arrays are always passed by reference to a function. In this chapter, we will discuss the array in details along with it's relationship with pointer. 
+
+\section{Array}
+Listing \ref{c:arrayEx} shows two types of one-dimensional arrays i.e. `uninitialized array' and `initialized array' at Lines 8 and 9 respectively. Also, outputs are printed in formatted-manner at Lines 51-61, where outputs are nicely aligned. The `\%2d' and `\%11.2f' etc. are used for defining the formats (see comments to understand this), which specify the width for printing elements (with respect to previously printed element, see Lines 26 and 28), and right-aligned outputs are printed by these. 
+
+\begin{explanation}[Listing \ref{c:arrayEx}]
+	In the listing, array are initialized in following four ways, 
+	
+	\begin{enumerate}
+		\item At Line 8, array `a' is defined of size 5 (i.e. 0 to 4), but it is not initialized; hence elements of array `a' contains the garbage values (see Line 15 and 46). At Line 15, `a[0]' is used to print the value of zeroth position of array `a'. Here, parameter inside the [] is known as `index' i.e. `0' is the index. Also, value to this array is assigned using `for loop' at Lines 37-40. Further, the values can be assigned using index as well e.g. a[0]=20 etc.  
+		
+		\item At line 9, array `b' of size 3 is defined; further this array is initialized as well. Values of this array is printed using `for loop' at Lines 26-29. 
+		
+		\item At line 10, size of array `c' is not defined, but it is initialized with 2 elements; therefore it's size will be set to 2 automatically. 
+		
+		\item At line 11, the array `d' has size 5 and is initialized with only 2 values. Note that, in this case, the rest of the values i.e. position 2-4 are set to 0 (not filled with garbage value), as shown in Lines 19-21. 
+		
+		\item Finally, line 13 is commented, where array `e' is defined without providing it's size and initialization; such arrays are not allowed in C and compiler will report error, if we uncomment this line. We need to define array with initialization or size or both. 
+	\end{enumerate}
+\end{explanation}
+\lstinputlisting[
+language = C,
+caption    = {Array example},
+label      = {c:arrayEx}
+]{arrayEx.c}
+
+\section{Arrays are pointers}
+In previous section, we printed the values stored in the array using `index'. We can not print the values of array by print it's name (as we do for normal variable), because `arrays are not variables, but pointer-variables', therefore their names print the addresses instead of values, as shown in this section. 
+
+\begin{explanation}[Listing \ref{c:arrayPointerEx}]
+	Note that, at Line 9, the name of the variable i.e. `x' is used with `printf' statement , which prints the address of the first element of array i.e. x[0]. In the other words, name of the array is a pointer-variable, which store the location of the first element of the array. Value of first element of array i.e. `x[0]' can be retrieved using `*' operation as shown in Line 10. Similarly, `x+1' (Line 12), is the address of second element of array, whose value can be retrieved by command `*(x+1)' (Line 13).  Please note that the difference between `*x + 1' and `*(x+1)' at Lines 14 and 13 respectively. 
+\end{explanation}
+
+
+\lstinputlisting[
+language = C,
+caption    = {Arrays are pointers},
+label      = {c:arrayPointerEx}
+]{arrayPointerEx.c}
+
+\section{Multi dimensional arrays}
+To define the multi dimensional array, multiple [] are used e.g. for 2 dimensional array, two [], i.e. x[3][2], are used as shown in Line 7. x[3][2] represents that the array `x' has `3 rows' and `2 columns'. Further, this array is initialized as well (Line 8-10). Individual element of this array can be accessed by using index at Lines 14-15. Further, all the elements of this array are  printed using `for loop' at Lines 18-23. Similarly, we can define higher dimensional array e.g. three dimensional array is defined as `y[4][3][6]'. 
+\lstinputlisting[
+language = C,
+caption    = {Multi dimensional arrays},
+label      = {c:multiDimArrayEx}
+]{multiDimArrayEx.c}
+
+
+\section{Passing array to function}
+When array is passed to function, then pointer to first element is passed i.e. arrays are always passed by reference, as shown in Listing \ref{c:arrayFuncEx}. 
+
+\begin{explanation}[Listing \ref{c:arrayFuncEx}]
+	In the listing, array is passed to function `addArray' (by using it's name i.e. `a') at Line 23, which is similar to passing a normal variable to function. But the difference is in the prototype at Line 7, where `int []' are used for array; also, we can use `int *' to pass the array (instead of `int []')' . In the function (Lines 33-36), all the elements of array are increased by the value of variable `addValue (Line 14). Note that return type for the function `addArray' is `void', but we are getting the new values of `a' at Lines 26-27. This is happening, because arrays are passed by reference, hence all the changes are made directly on the addresses of the array. 
+\end{explanation}
+\lstinputlisting[
+language = C,
+caption    = {Passing array to function},
+label      = {c:arrayFuncEx}
+]{arrayFuncEx.c}
+
+%There are four ways to pass an array to function, 
+%\begin{enumerate}
+%	\item array to array : a[m][n] $\rightarrow$ b[m][n]
+%	\item array to pointer : a[m][n] $\rightarrow$ *p
+%	\item array to one dimensional pointer array : a[m][n] $\rightarrow$ (*p)[n]
+%	\item array to two dimensional pointer array : a[m][n] $\rightarrow$ (*p)[m][n]	
+%\end{enumerate}
+
+\section{Using `const' with Pointer}
+In Listing \ref{c:arrayFuncEx}, we pass the array to function and it's value is modified by the function. The `\textbf{const}' keyword can be used to pass the array to function in `\textbf{read only mode}'. In this case, the elements of the can be used inside the function, but can not be modified, as shown at Lines 7 and 22 of Listing \ref{c:arrayConstFuncEx}. If we uncomment the Line 29, then error will be generated as values of array can not be modified. Similarly, variables and strings passed as `const' can not be modified i.e. if we uncomment the Line 33, then error will be generated. 
+
+\lstinputlisting[
+language = C,
+caption    = {Passing parameters to function with `const' keyword},
+label      = {c:arrayConstFuncEx}
+]{arrayConstFuncEx.c}
+
+\section{Passing strings to function}
+Similar to array, the strings are also `passed by reference' as shown in Listing \ref{c:stringConstFuncEx}. In the listing, char array `a' is passed with `const' keyword, therefore it's value can not be modified by the function i.e. if we uncomment Line 30, then error will be generated.  
+
+\lstinputlisting[
+language = C,
+caption    = {Passing strings to function},
+label      = {c:stringConstFuncEx}
+]{stringConstFuncEx.c}
+
+\section{Problem with string initialization and solution}
+Listing \ref{c:stringInitProblem} is same as Listing \ref{c:stringConstFuncEx}, but size of character array is defined at Line 12 and 13. Now, look at the output of Line 39 at Line 51, where `String1' is added after `xxxx...".
+\begin{noNumBox}
+	 Solution to this problem is shown in Listing \ref{c:stringInitSolution}, where \textbf{Null character} i.e. `$\backslash 0$' is used with `for loop' at Lines 27 and 36 (Note the differences in these two lines as well).  In this way, the loops execute for the `length of the actual string i.e. 8' (instead of SIZE = 10); therefore does not store the unexpected result.  Please read the comment at Line 12 as well. 
+\end{noNumBox}
+
+\lstinputlisting[
+language = C,
+caption    = {Problem with string initialization},
+label      = {c:stringInitProblem}
+]{stringInitProblem.c}
+
+\lstinputlisting[
+language = C,
+caption    = {Solution of problem in Listing \ref{c:stringInitProblem}},
+label      = {c:stringInitSolution}
+]{stringInitSolution.c}
+
+
+\section{Conclusion}
+In this section, we saw that the name of the array is a pointer. Also, we defined multidimensional array. Further, it is shown that the arrays and strings are passed-by-reference in the functions. Lastly, use of `const' keyword is discussed for passing variables, strings and arrays to functions. 

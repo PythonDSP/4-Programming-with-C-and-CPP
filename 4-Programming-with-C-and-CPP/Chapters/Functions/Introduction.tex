@@ -1,0 +1,159 @@
+\section{Introduction}
+If certain codes are used repeatedly in the program, then these codes can be written in the form of functions. Function is a block of code which can perform certain operations based on inputs provided to it. Further, writing code using functions make it more readable and manageable as discussed in this chapter. Also, scope of variables and the concept of pointers are discussed in this chapter. 
+
+\section{Function Example}
+Let us understand the function with an example. Listing \ref{c:functionEx} shows three parts of a function i.e. `function prototype (Line 7)', `function definition (Lines 11-15)' and `function call (Line 21)'.
+\\ \\
+\textbf{Function prototype} is used to indicate the name of function, which includes the \textbf{types} of input arguments along with the return type; e.g. Line 7 shows that the inputs are of `int' and `float' types, whereas return type is `float'.
+\\ \\
+\textbf{Function definition} includes the functionality of the code along with the return value e.g. Line 13 add the two numbers and return the result from Line 14. 
+\\ \\
+\textbf{Function call} is required to use the function; e.g. in Line 21 `add2Num' function is called with two values `x' and `y'. Note that, `x' and `y' are passed in the function call, which will be assigned as `a' and `b' in Line 11. Then, the result i.e. `c' will be returned by Line 14, which will be stored in variable `z' at Line 21. Finally, value of `z' is printed by Line 23.  
+
+\lstinputlisting[
+language = C++,
+caption    = {Function example},
+label      = {c:functionEx}
+]{functionEx.c}
+
+\section{Scope of variable}
+Variables can be accessed either by all the functions (i.e. global variable) or by a particular function only (i.e. local variable); this accessibility of the variable known as scope of the variable. Three types of scopes can be defined using following variables, 
+\begin{enumerate}
+	\item Automatic variable 
+	\item Static variable
+	\item Global variable
+\end{enumerate}
+
+\subsection{Automatic variable}
+Automatic variables are the variable which are accessible within the function, i.e. inside the function in which these variables are defined. All the variable which we studied till now, were the `automatic variable'. Also, if these variable are not initialize, then they will contain garbage value as shown in Listing \ref{c:autoEx}. 
+ 
+\begin{explanation}[Listing \ref{c:autoEx}]
+	In the listing, there are three `automatic variables' are defined i.e. x (Line 8), y (Line 13) and z (Line 17). Following are the important points to note about these variables, 
+	
+	\begin{enumerate}
+		\item \textbf{The variable `y' is defined inside the brackets at Lines 11 and 15.} Therefore it's scope is within these brackets and will not be accessible from outside; e.g. if we uncomment the Line 22, an error will be reported with message ``error: `y' was not declared in this scope''.
+		
+		\item Variable `z' is not initialized, therefore some garbage value will be stored in it, which can be seen by printing it's value, as shown in Line 24. 
+		
+		\item Variable `x' is defined in the main function (without any additional brackets), therefore it will be available for printing at Line 19.   
+	\end{enumerate}
+\end{explanation}
+
+\lstinputlisting[
+language = C++,
+caption    = {Automatic variable},
+label      = {c:autoEx}
+]{autoEx.c}
+
+\subsection{Static variable}
+Keyword \textbf{`static'} is used to define static variable.Unlike automatic-variables, these variables are automatically initialized with 0. Further, these variables store their values within the function, even if the compiler leave the function, as shown in Listing \ref{c:staticEx}. 
+
+\begin{explanation}[Listing \ref{c:staticEx}]
+	In the listing, two similar functions are defined i.e. `incFunc' and `staticIncFunc' at Lines 10 and 18 respectively. The only difference in these function is that, in staticIncFunc, the variable j is defined as `static' at Line 21; whereas the variable `j' at Line 12 is `automatic vairable', which makes the working of two functions different, as shown below, 
+	\begin{enumerate}
+		\item The values of `automatic variable' is not stored after leaving the function. Therefore, each time the function `incFunc' is called by Line 33 (which is in the for loop at Line 32), the variable `j' is initialized with `0' and the output is always `1' at Line 13 and return back by Line 14. Hence, the Line 37 prints the output `auto\_output' as 1. 
+		
+		\item The value of `static variable' is stored within the function definition, and reused by next function call. Hence, the value of `j' is kept increasing on each function call made by Line 34. Therefore, the final value of output `static\_output' is printed as `5' by Line 38. 
+		
+		\item Also, we need not to initialize the variable `j = 0' at Line 21, as by default, the static variables are initialized with 0.
+		
+		\item Lastly, similar to automatic variables, the static variables are available to their block only, i.e. static variable `j' at Line 21 is available inside the `staticIntFunc' only.
+	\end{enumerate}
+\end{explanation}
+
+\lstinputlisting[
+language = C++,
+caption    = {Static variable},
+label      = {c:staticEx}
+]{staticEx.c}
+
+\subsection{Global variable}
+Global or External variables are defined outside the functions, which can be used by all the functions in the program, as shown in the Listing \ref{c:globalEx}. Similar to static variables, by default, these variables are initialized with value `0'.  
+
+\begin{explanation}[Listing \ref{c:globalEx}]
+	In the listing, two global variables are defined i.e. `g' and `e' at Lines 5 and 44 respectively. Please look at the below points to understand the differences between these variables i.e. `g' and `e', 
+	
+	\begin{enumerate}
+		\item Global variable `g' is defined at the top of the code, whereas the variable `e' is defined at the bottom of the code. Since, `g' is at the top, therefore it can be accessed by all the function without any further statements e.g. `g' is used at Line 34 of function `main' and Line 11 of function `g\_incFunc'. 
+		
+		\item Since, the global variable `e' is defined at the bottom of the code, therefore it can not be find by compiler for other functions and needs further settings. Hence, the `extern' command is added in the functions, to use the global variable `e' as shown in Lines 17 and 25 of function `e\_incFunc' and `main' respectively.	
+		
+		\item Similarly, if the global variable are defined in different files, then `extern' command must be used. 	
+	\end{enumerate}
+\end{explanation}
+\lstinputlisting[
+language = C++,
+caption    = {Global variable},
+label      = {c:globalEx}
+]{globalEx.c}
+
+\section{Pointers} \label{sec:PointersBasic}
+Pointers are the variables which store the memory location, which are shown in Listing \ref{c:pointerEx}. In this listing, following points are important for pointers' declarations and their usage, 
+
+\begin{enumerate}
+	\item To declare a pointer, `*' is used before variable name along with it's data type (see Line 8). 
+	
+	\item `$\&$ sign with normal variable' represents the address of the variable (see Line 18). 
+	
+	\item To store the address of a variable in pointer-variable, the `$\&$ sign' is used with normal variable (see Line 10); where address of variable `x' is stored in pointer-variable `y'. 
+	
+	\item Name of the pointer variable returns the address stored in it i.e. Line 19. 
+	
+	\item To get the values in the address stored by the pointer, * sign is used i.e. Line 20. 
+	
+	\item Lastly, values can not be assigned to the pointer-variables e.g. if we uncomment the Lines 14-15, it will generate error.  
+\end{enumerate}
+
+\lstinputlisting[
+language = C++,
+caption    = {Pointer example},
+label      = {c:pointerEx}
+]{pointerEx.c}
+
+\section{Pointer to pointer}
+
+`**' are used to create a pointer for the pointer as shown in Listing \ref{c:pointerToPointerEx}. Rest of the working for the code is same as Section \ref{sec:PointersBasic} e.g. the variable `z' is the pointer to a pointer i.e. y. Now, we know that, the `*' sign is used to get the value from the pointer; therefore to get the value stored in pointer-to-the-pointer (i.e. z here), we need to use two `*', because first star will return the value stored in the `z' (i.e. value stored at $\&y$, or equivalently address of x) and then second * will return the value stored in `y' (or value stored in address of x). For more understanding, please see all the `cout' statements in the listing. 
+ 
+\lstinputlisting[
+language = C++,
+caption    = {Pointer to pointer},
+label      = {c:pointerToPointerEx}
+]{pointerToPointerEx.c}
+
+\section{Passing parameters to functions}
+There are two ways to pass the parameters to the function i.e. pass by values or pass by reference (i.e. passing addresses using pointers). In this section, squares and cubes of the numbers are calculated with these two methods, to understand the differences.
+
+\subsection{Passing parameters by values}
+All the functions, which we learned till now were the example of `parameters passed by values'. Listing \ref{c:passValueEx} is another example of it. Here square and cube of the variable `a' is calculated. \textbf{Since, only one value can be returned by the function, therefore two separate functions are written i.e. `cube' and `square' to calculate the values.}. This problem of writing two functions can be solved by using `parameter passed by reference' method, as shown next.  
+\lstinputlisting[
+language = C++,
+caption    = {Pass by value},
+label      = {c:passValueEx}
+]{passValueEx.c}
+
+\subsection{Passing parameters by references}
+If the variables are passed by references, then function does not make the copy of variables; instead work directly on them. This method is good for passing a large number of data to function, otherwise making a copy of variables on each function call, may result in memory issues. Further, it is a good way to calculate and retrieve multiple values from the same function. Here two examples are shown to understand the concept of `pass by reference'. 
+
+\begin{explanation}[Listing \ref{c:passRefFunc}]
+	In this listing, numbers are swapped using function `swap', i.e. value of variable `x' is saved in `y' and vice versa. Note that, at Lines 6 and 20, `int *' are used to pass the parameter by reference (instead of `int' as in pass by values). Next, variables are passed along with `$\&$' operator, in the function `swap'  at Line 13, i.e. address of the variables are passed, instead the variable itself. 
+	
+	 Further, since the addresses are passed at Line 13, therefore  the changes are made directly on the address, hence the return type for the function is `void' at Line 6. Lastly, Lines 21-24 perform the number-swapping operation. 
+\end{explanation}
+\lstinputlisting[
+language = C++,
+caption    = {Pass values by references},
+label      = {c:passRefFunc}
+]{passRefFunc.c}
+
+\begin{explanation}[Listing \ref{c:passRefEx}]
+	Function of this listing is same as Listing \ref{c:passValueEx}, but pass by reference and pass by value methods are mixed together here. At Line 17, variable `c' and `s' are passed by reference, whereas variable `a' is passed by value. Next, calculation of square and cube values are performed by one function only (as oppose to two in Listing \ref{c:passValueEx}). Since the values are passed by reference, therefore the calculated values of cube and square are stored at the addresses of variables `c' and `s' respectively; since nothing is returned by the function `cube\_square in this case, therefore `void' is used at Line 25. 
+\end{explanation}
+\lstinputlisting[
+language = C++,
+caption    = {Pass by reference and value (mixed)},
+label      = {c:passRefEx}
+]{passRefEx.c}
+
+\section{Conclusion}
+In this chapter, functions and pointers are discussed. Further, the scope of various type of variables are shown with example. Lastly, it is shown that when the parameters are `passed by values', then only one value can be retrieve from the function; whereas `pass by reference' method can be used to calculate and retrieve multiple values from a function. 
+

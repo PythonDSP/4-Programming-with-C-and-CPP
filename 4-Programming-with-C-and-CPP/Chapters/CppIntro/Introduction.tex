@@ -1,0 +1,130 @@
+\section{Introduction}
+
+In previous chapters, we learn various features of C programming language. Now, we will discuss the C++ programming language, which can be considered as the superset of C. In the other words, all the codes in the previous chapters can be compiled directly using C++ compiler (i.e. using \textbf{g++}, instead of \textbf{gcc}), but vice-versa is not possible, as we saw in Listing \ref{c:ElseIfEx}, where `or' keyword was used, and the code was compiled using `g++'. 
+
+The major difference between these two languages is that the C language is `procedural programming language' whereas the C++ language is the \textbf{combination} of `procedural programming' and `object oriented programming (OOP)'. In this chapter, we will re-implement the previous codes using standard `C++ headers' (instead of using `C headers' in C++); and then OOP features of C++ will be discussed from next chapter.  Lastly, the C codes are saved with extension `.c', whereas C++ codes are saved with extension `.cpp' or `.cc'. We will use `.cpp' extension in this tutorial. 
+
+\section{Writing first code}
+Listing \ref{cpp:helloWorld} shows the source code to print the `Hello World' on the screen. To execute the code in the listing, open the terminal and go to the folder where program is saved and type following commands; which will generate the output on the terminal. 
+\\
+\textbf{\textdollar { \ } g++ helloWorld.cpp -o out} \\
+\textbf{\textdollar { \ }  ./out} (in Unix)\\
+\textbf{\textdollar { \ }  out} (in Windows)
+
+\begin{explanation}[Listing \ref{cpp:helloWorld}]
+	C++ is also \textbf{case-sensitive} language. Similar to C language, each program contains one and only one  `main' function, which is the starting point of the code. In this listing, Line 6 has the `main' function, which contains two other keywords i.e. `int' and `void'; here `void' indicates that, the main `function' does not have any input parameter, whereas `int' represents that the return type of this function is `integer'.
+	
+	\begin{noNumBox}
+		Note that, in C++ the `iostream' is the header file (instead of `stdio.h'), which contains all the input and output formats i.e. `cin' and `cout' respectively. The function of `cout' and `cin' is similar to `printf' and `scanf' statements in C. Only these statements are needed to be changed in the previous chapters to convert the C codes into C++, which is discussed in this chapter. Also, the complete list of C++ keywords are shown in Table \ref{tbl:KeywordsC}. 
+	\end{noNumBox}
+		
+	In Line 9, keyword `cout' is used, which prints the characters on the screen. Next `namespace std::' is used along with the `cout' because `cout' is defined in this namespace. Further, `std' is defined in `iostream header file' therefore it is included at Line 4. Then, `endl' is used to terminate the line, which is also defined in the `namespace std'. Lastly $<<$ is known as `stream insertion operator' which inserts the values to output stream i.e. `Hello', `end of line (i.e. line-change)' and `World' will be inserted to output stream. Hence, `Hello' will be displayed at first line and `World' will be displayed at second line in the output, as shown in Lines 14-15. 
+	
+	Similar to C,  multiple lines can be commented by using $/ *$ and $* /$ as shown in Lines 13-16; whereas `$//$' is used for single line comments. The comments make code more readable; e.g. in this listing, functions of all the lines are described as comments.
+\end{explanation}
+
+\lstinputlisting[
+language = C++,
+caption    = {Print Hello World},
+label      = {cpp:helloWorld}
+]{helloWorld.cpp}  
+
+\section{`Namespaces' and `Line termination' }
+In Listing \ref{cpp:helloWorld}, we used `std::' at various places. To avoid writing the `std::', we can define the  namespace at the top of the code with keywords `using namespace', as shown in Listing \ref{cpp:helloWorldNamespace}. Further, $\backslash n$ is used for ending the line at Line 10 (instead of endl) .
+
+\lstinputlisting[
+language = C++,
+caption    = {Using namespace},
+label      = {cpp:helloWorldNamespace}
+]{helloWorldNamespace.cpp}
+
+\textbf{Note that, Line 9 can be written in multiple lines as well as shown in Lines 11-13 (uncommet these lines to check the outputs). In the other words, it is the `;' which terminates the line, not the white spaces.}
+
+\section{C to C++ conversion examples}
+In this section, some of the previous codes are re-written using C++. Here, we can see that, to convert the C code to C++, we need to change the header file i.e. \textbf{replace `stdio.h' with `iostream'; and then substitute all the `printf' and `scanf' statements with `cout' and `cin' statements respectively}. 
+
+\subsection{`cin' and `cout'}
+In Listing \ref{cpp:cinEx}, the name is provide by the user (Line 11) and then message is displayed through Line 13, which is similar to Listing \ref{c:scanfEx}.
+\lstinputlisting[
+language = C++,
+caption    = {`cin' and `cout'},
+label      = {cpp:cinEx}
+]{cinEx.cpp}
+
+\subsection{Dot product}
+Listing \ref{cpp:dot_product} performed the dot product of two vectors which is discussed in Listing \ref{c:dot_product}.
+
+\lstinputlisting[
+language = C++,
+caption    = {Dot product of vectors},
+label      = {cpp:dot_product}
+]{dot_product.cpp}
+
+\subsection{Bitwise operators}
+Listing \ref{cpp:shiftOpEx} shows the bitwise operations, which is discussed in Listing \ref{c:shiftOpEx}.
+\lstinputlisting[
+language = C++,
+caption    = {Bitwise operators},
+label      = {cpp:shiftOpEx}
+]{shiftOpEx.cpp}
+
+\section{Formatted input and outputs}
+Similar to Chapter \ref{ch:FormatIO}, in this section we will see various formatting commands for inputs and outputs in C++. 
+
+\subsection{Integer values in Binary, Hex, Octal and Decimal formats}
+In this section, we will learn to print the \textbf{integer values} in different formats i.e. Binary, Hexadecimal, Octal and Decimal. This can be done using keywords `bitset', `hex', `oct' and `dec' as shown in Listing \ref{cpp:hexDec}. For further understanding,  see the comments and outputs of the code in the listing. \textbf{Note that, the variable `h' is defined as `hexadecimal' and when it is printed at Line 28, the default output is in `octal format'; and when again it is printed at Line 32, the default output is in `decimal format'.} Therefore, it is better to define the print-format for hexadecimal and octal values.  
+
+\lstinputlisting[
+language = C++,
+caption    = {Printing numbers in different formats},
+label      = {cpp:hexDec}
+]{hexDec.cpp}
+
+\subsection{Floating point values in Scientific and Fixed notations}
+Floating point values can be represented in Scientific and Fixed point notation using keywords `\textbf{scientific}' and `\textbf{fixed}' respectively, as shown in Listing \ref{cpp:floatFormat}. Also, we can set the precision for the outputs using `\textbf{setprecision}' as shown in Line 17 of the listing. \textbf{Also, note the ambiguities between the actual value of `a' and all the results}.  
+\lstinputlisting[
+language = C++,
+caption    = {Floating point values in Scientific and Fixed notations},
+label      = {cpp:floatFormat}
+]{floatFormat.cpp}
+
+
+\subsection{Modify `cout' format}
+The `setw(10)' is used for setting the minimum width as 10 for the outputs, which is similar to `\%10d' in C. Similarly, `left' and `right' keywords are used to left-justify and right-justify the outputs, as shown in Listing \ref{cpp:coutFormat}. 
+
+\lstinputlisting[
+language = C++,
+caption    = {Modify `cout' format},
+label      = {cpp:coutFormat}
+]{coutFormat.cpp}
+
+\subsection{`cin' formats}
+The \textbf{hex} and \textbf{oct} keywords can be used with `cin' statement to read the Hexadecimal and Octal values respectively, as shown in Listing \ref{cpp:cinFormats}. 
+
+\lstinputlisting[
+language = C++,
+caption    = {`cin' formats},
+label      = {cpp:cinFormats}
+]{cinFormats.cpp}
+
+\section{Type `string'}
+C++ provide the `std::string' type to handle strings. Listing \ref{c:stringInitSolution} is re-implemented using `string-type' in Listing \ref{cpp:stringType}. Please note the following things about string, 
+
+\begin{enumerate}
+	\item Size of `string' is 4 (see output of Line 19); whereas the size of `char' is 1 byte.
+	\item Value to string can be assigned using `cin' (Line 16). And similar to char, the input will be read till first `space' i.e. input `Meher Krishna' will be read as `Meher' (see output at Line 60 and 64). 
+	\item `string' can be passed to function as `const' as well (Line 28); which can not be modified by the function i.e. Line 36 will generate error. 
+	\item Note that, string `b' contains `7' characters, and Lines 40-44 assigns 10 `x' to `b'. If we look the output of Line 55, then we find that there are only 7 `x' (i.e. equal to size defined at Line 13). In the other word, string size can not be modified after initialization or after getting the input from user. 
+	\item If we try to print the string values above it's size (i.e. 7 here), then garbage values will be printed (see output of Line 55). 
+	\item Lastly, similar to Listing \ref{c:stringInitSolution},  it better to use `Null character $(i.e. \backslash 0)$' in the `for loop' to access the elements of the string (uncomment Lines 47-52) instead of Lines 39-45. 
+\end{enumerate}
+
+\lstinputlisting[
+language = C++,
+caption    = {Type `string'},
+label      = {cpp:stringType}
+]{stringType.cpp}
+
+
+\section{Conclusion}
+In this chapter, we wrote simple `Hello World' programs, which illustrate the concept of `main function', `name space' and `printing output on screen'. Further, we converted some of the previous C codes into C++ codes. Lastly, various input and output formats are discussed. 

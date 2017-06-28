@@ -1,0 +1,36 @@
+### C ##########
+*.exe
+*.o 
+
+### VHDL ########
+*.bak
+*work  # work folder
+
+### Latex #########
+*.gz
+*.aux
+*.idx
+*.log
+*.nlo
+*.out
+*.toc
+*.ind
+*.ilg
+
+### Python ###
+__pycache__
+*.pyc
+
+
+########### Manual changes based on Project ############
+
+# latex pdf file
+Programming-with-C-and-C++.pdf
+
+# codes.zip
+C-Codes.zip
+
+# main-folder in zip format
+*4-Programming-with-C*.zip
+
+
