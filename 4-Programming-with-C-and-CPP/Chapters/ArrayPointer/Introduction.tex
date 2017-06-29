@@ -68,7 +68,7 @@ label      = {c:arrayFuncEx}
 %	\item array to two dimensional pointer array : a[m][n] $\rightarrow$ (*p)[m][n]	
 %\end{enumerate}
 
-\section{Using `const' with Pointer}
+\section{Using `const' with pointer}
 In Listing \ref{c:arrayFuncEx}, we pass the array to function and it's value is modified by the function. The `\textbf{const}' keyword can be used to pass the array to function in `\textbf{read only mode}'. In this case, the elements of the can be used inside the function, but can not be modified, as shown at Lines 7 and 22 of Listing \ref{c:arrayConstFuncEx}. If we uncomment the Line 29, then error will be generated as values of array can not be modified. Similarly, variables and strings passed as `const' can not be modified i.e. if we uncomment the Line 33, then error will be generated. 
 
 \lstinputlisting[
