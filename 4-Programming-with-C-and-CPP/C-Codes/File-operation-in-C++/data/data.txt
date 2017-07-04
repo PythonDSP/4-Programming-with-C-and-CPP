@@ -1,0 +1,4 @@
+1 Radio 12.3
+2 Oven 14.5
+3 Computer 100
+4 Laptop 120

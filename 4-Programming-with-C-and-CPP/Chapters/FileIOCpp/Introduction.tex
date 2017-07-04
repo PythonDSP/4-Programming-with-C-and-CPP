@@ -1,0 +1,21 @@
+\section{Write data to file}
+In C++, for writing or reading data from a file, we need to include the `fstream' header file as shown in Line 4 of Listing \ref{cpp:writeDataEx}. Next, we need to open the file, which is done at Line 13 using `ofstream' and `ios::out' keywords. This line opens the file as `outFile' and if file does not open successfully, then `if statement' at line 15 prints the message at Line 16. Note that, the file `data.txt' file is saved inside the `data' folder, therefore we need to create the `data' folder first, as compiler can not create the folder. If file is open successfully, the compiler will reach to `else' block at Line 19; where it will read the data from the terminal (Line 24), and then save it to file using Line 25. The `while loop' is used at Line 24, which reads the data from terminal until `end of file command' is given i.e. ``ctrl-Z'' or ``crtl-C'', as shown in Fig. \ref{fig:writeDataEx} in Chapter \ref{ch:fileio}. Also, the data saved by the listing is shown in Fig. \ref{fig:writeDataEx2}. Lastly unlike C, in C++, file is automatically closed at the end of the program. 
+
+
+\lstinputlisting[
+language = C,
+caption    = {Write data to file},
+label      = {cpp:writeDataEx}
+]{writeDataEx.cpp}
+
+\section{Read data from file}
+Reading operation is similar to writing operation. The `ifstream' and `ios::in' keywords are used to read the data from the file, as shown in Line 13 Listing \ref{cpp:readDataEx}. 
+
+\lstinputlisting[
+language = C,
+caption    = {Read data from file},
+label      = {cpp:readDataEx}
+]{readDataEx.cpp}
+
+\section{Conclusion}
+In this chapter, we learn to read and write data to file using C++. We saw that the data can be stored  permanently in a file; and then this data can be processed and analyzed by some other software like Python and R etc. 
